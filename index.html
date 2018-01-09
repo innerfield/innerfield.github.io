@@ -1,0 +1,191 @@
+<html>
+    <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<meta name="google" content="notranslate" />
+<link rel="shortcut icon" href="/favicon.ico">
+<title>innerfield</title>
+<style>
+  html,
+  body {
+    background: #1d1d1d;
+    background-image: url("bg.png");
+        height: 100%;
+    margin: 0px;
+    overflow-x: hidden;
+  }
+  h1 {
+    color: #454545;
+    font-family: Times New Roman;
+    font-size: 60px;
+    font-weight: 900;
+    letter-spacing: 10px;
+  }
+  #layers {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    overflow: hidden;
+  }
+  
+  .layer {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    opacity: 0;
+    -webkit-animation-name: zoom;
+    animation-name: zoom;
+    -webkit-animation-duration: 5s;
+    animation-duration: 5s;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+  }
+  
+  .layer.layer-2 {
+    -webkit-animation-delay: 1s;
+    animation-delay: 1s;
+  }
+  
+  .layer.layer-3 {
+    -webkit-animation-delay: 2s;
+    animation-delay: 2s;
+  }
+  
+  .layer.layer-4 {
+    -webkit-animation-delay: 3s;
+    animation-delay: 3s;
+  }
+  
+  .layer.layer-5 {
+    -webkit-animation-delay: 4s;
+    animation-delay: 4s;
+  }
+  
+  .star {
+    width: 11px;
+    height: 11px;
+    display: inline-block;
+    position: absolute;
+    fill: #ffffff;
+  }
+  
+  .star:nth-child(3n+3) {
+    fill: #FEC777;
+  }
+  
+  .star:nth-child(5n+5) {
+    fill: #498FB3;
+  }
+  
+  @-webkit-keyframes zoom {
+    0% {
+      -webkit-transform: scale(0.1);
+      transform: scale(0.1);
+      opacity: 0;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      -webkit-transform: scale(2);
+      transform: scale(2);
+      opacity: 0;
+    }
+  }
+  
+  @keyframes zoom {
+    0% {
+      -webkit-transform: scale(0.1);
+      transform: scale(0.1);
+      opacity: 0;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      -webkit-transform: scale(2);
+      transform: scale(2);
+      opacity: 0;
+    }
+  }
+  a {
+    color: #FFFFFF;
+    font-family: Lato;
+    font-size: 20px;
+    font-weight: 200;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin: 0;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    z-index: 20;
+    display: table-cell;
+    vertical-align: middle;
+    text-decoration: none;
+  }
+  a:hover
+  {
+    color: #F50;
+  }
+</style>
+<div id="spacer">
+</div>
+<div id="title">
+</h1>
+</div>
+<div id="layers">
+  <div class="layer layer-1"></div>
+  <div class="layer layer-2"></div>
+  <div class="layer layer-3"></div>
+  <div class="layer layer-4"></div>
+  <div class="layer layer-5"></div>
+</div>
+
+<script>
+  (function($) {
+    $(document).ready(function() {
+  
+      $('.layer').each(function() {
+  
+        var $this = $(this),
+          limit = 30,
+          $star = [];
+  
+        while (limit) {
+  
+          $star = $('<span/>').addClass('star');
+          //$star.html('<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M10.744,5.372C7.777,5.372,5.372,2.967,5.372,0c0,2.967-2.405,5.372-5.372,5.372c2.967,0,5.372,2.405,5.372,5.372 C5.372,7.777,7.777,5.372,10.744,5.372z"/></svg>');
+          var symbols = ['∑', 'Δ', 'π', 'σ', 'α', 'β', 'ŷ'];
+            $star.html('<h1>'+symbols[randomInt(0,7)]+'</h1>');
+          $star.css({
+            left: randomInt(1, 100) + '%',
+            top: randomInt(1, 100) + '%',
+            transform: 'scale(' + randomNum(0, 1) + ')',
+            opacity: randomNum(0.6, 1)
+          });
+  
+          $this.append($star);
+          limit--;
+        }
+      });
+  
+    });
+  
+    function randomInt(min, max) {
+      return Math.floor((Math.random() * max) + min);
+    }
+    
+    function randomNum(min, max) {
+      return Math.max((Math.random() * max), min).toFixed(1);
+    }
+  })(jQuery);
+</script>
+    </head>
+    <body>
+        <div align="center">
+        <img src="head-t.png"></img>
+        </div>
+    </body>
+</html>
